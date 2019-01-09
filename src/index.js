@@ -1,9 +1,12 @@
+require('./css/main.css')
+
 import Vue from 'vue'
 import VueMaterial from 'vue-material'
 import Router from 'vue-router'
 import App from './App'
 import routes from './router'
 import firebase from 'firebase';
+
 
 var fbConfig = {
   apiKey: "AIzaSyDs-Iuuh0gh0FlpiKawN-EW_SkKSo_Za04",

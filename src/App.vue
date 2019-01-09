@@ -1,8 +1,10 @@
 <template>
-  <div>
+  <div class="container">
     <nav-layout></nav-layout>
-    <menu-layout></menu-layout>
-    <router-view></router-view>
+    <div class="main-container">
+      <menu-layout></menu-layout>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -20,5 +22,12 @@
   }
 </script>
 <style>
-
+  .container {
+   height: 100%; 
+  }
+  
+  .main-container {
+    display: flex;
+    height: 100%;
+  }
 </style>

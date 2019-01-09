@@ -1,5 +1,5 @@
 <template>
-  <div>menu List
+  <div class="menu-area">menu List
     <ul>
       <li v-for="menu in menuList">
         <router-link :to="{name : menu.path, params: { menuName : menu.name }}">{{menu.name}}</router-link>
@@ -23,5 +23,8 @@
 </script>
 
 <style scoped>
-
+  .menu-area {
+    border: 1px solid;
+    height: 100%;
+  }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nav-area">
     <h1>IMEZ 다국어 관리 사이트</h1>
   </div>
 </template>
@@ -12,4 +12,8 @@
 
 <style scoped>
 
+  .nav-area {
+    border: 1px solid;
+    background: #efefef;
+  }
 </style>
