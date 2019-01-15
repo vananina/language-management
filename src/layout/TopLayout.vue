@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: "NavLayout"
+    name: "TopLayout"
   }
 </script>
 

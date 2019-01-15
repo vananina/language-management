@@ -25,21 +25,17 @@
 
 <script>
 
-  import data from "../../data/data";
+  import data from "@/data/data";
 
   export default {
-    name: "BoardTable",
+    name: "LanguageTable",
     props: {
       menuName: String // 문자열 데이터만 허용한다.
     },
-    data(){
+    data() {
       return {
         langList: data.langList
       }
-  },
-    mounted() {
-      // props으로 받으면 자신의 데이터와 마찬가지로 this로 사용할 수 있게 된다.
-      console.log(this.menuName)
     }
   }
 </script>

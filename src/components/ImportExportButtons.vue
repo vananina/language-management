@@ -9,7 +9,7 @@
 
 <script>
   export default {
-    name: "ControlPanel"
+    name: "ImportExportButtons"
   }
 </script>
 
