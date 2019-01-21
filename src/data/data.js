@@ -1,4 +1,8 @@
 export default {
+  menuList: [
+    {path: 'service', name: 'IMEZ Service'},
+    {path: 'partner', name: 'IMEZ Partner'}
+  ],
   langList: [
     {
       firstDiv: 'COMMON',

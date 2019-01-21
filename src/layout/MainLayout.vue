@@ -3,7 +3,7 @@
     <top-layout></top-layout>
     <div class="main-container">
       <menu-layout></menu-layout>
-      <router-view></router-view>
+      <router-view :key="$route.fullPath"></router-view>
     </div>
   </div>
 </template>

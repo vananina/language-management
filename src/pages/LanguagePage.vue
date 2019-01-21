@@ -7,8 +7,8 @@
 </template>
 
 <script>
-  import ImportExportButtons from '@/components/ImportExportButtons'
-  import LanguageTable from '@/components/LanguageTable'
+  import ImportExportButtons from '@/components/ExcelImportButton'
+  import LanguageTable from '@/components/LangTable'
 
   export default {
     name: "LanguagePage",
@@ -19,10 +19,6 @@
     data() {
       return {
       }
-    },
-    mounted() {
-      // props으로 받으면 자신의 데이터와 마찬가지로 this로 사용할 수 있게 된다.
-      console.log(this.menuName)
     }
   }
 </script>

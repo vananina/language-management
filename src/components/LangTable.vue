@@ -1,5 +1,5 @@
 <template>
-  <div>{{test}}
+  <div>
     <table border="1">
       <tr>
         <th>대분류</th>
