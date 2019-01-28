@@ -1,10 +1,5 @@
 <template>
-  <div class="ctr-area">
-   <button>excel 업로드</button>
-   <button>excel 다운로드</button>
-   <button>json 다운로드</button>
-    ...검색 영역...
-  </div>
+  <button type="button" class="btn btn-primary">excel 다운로드</button>
 </template>
 
 <script>
@@ -14,8 +9,5 @@
 </script>
 
 <style scoped>
-  .ctr-area {
-    display: flex;
-    margin: 20px;
-  }
+
 </style>

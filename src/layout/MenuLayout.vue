@@ -2,8 +2,9 @@
   <div class="menu-area">
     <ul class="nav flex-column">
       <li class="nav-item" v-for="menu in menuList" :key="menu.name">
-        <!--<router-link :to="{name : menu.path, props: { menuName : menu.name }}">{{menu.name}}</router-link>-->
-        <a class="nav-link main-font-color" href="" @click="goToMenu(menu)">{{menu.name}}</a> <!--active-->
+        <!-- <router-link :to="{name : menu.path, props: { menuName : menu.name }}">{{menu.name}}</router-link> -->
+        <!-- <router-link :to="{name : menu.path, params: { menuName : menu.name }}">{{menu.name}}</router-link> -->
+        <a class="nav-link main-font-color" href="" @click="goToMenu(menu)">{{menu.name}}</a>
       </li>
     </ul>
   </div>
@@ -21,11 +22,10 @@
     methods: {
       goToMenu : function (menu) {
         var params = {
-          menuName : menu.name,
-          menuId: menu.id
+          serviceId: menu.id
         };
         console.log('menu:', params);
-        this.$router.push({name : menu.name, path : menu.path, params: params});
+        this.$router.push({name : menu.name, path : menu.path, props: params});
       }
     }
   }
