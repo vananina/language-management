@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-fluid">
     <router-view></router-view>
   </div>
 </template>
@@ -15,12 +15,7 @@
   }
 </script>
 <style>
-  .container {
+  .container-fluid {
    height: 100%; 
-  }
-  
-  .main-container {
-    display: flex;
-    height: 100%;
   }
 </style>

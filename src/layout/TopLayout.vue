@@ -1,6 +1,6 @@
 <template>
-  <div class="nav-area">
-    <h1>IMEZ 다국어 관리 사이트</h1>
+  <div class="nav-area align-items-center">
+    <span>IMEZ 다국어 관리 사이트</span>
   </div>
 </template>
 
@@ -13,7 +13,11 @@
 <style scoped>
 
   .nav-area {
-    border: 1px solid;
-    background: #efefef;
+    display: flex;
+    height: 60px;
+    background: #09204c;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 20px;
   }
 </style>

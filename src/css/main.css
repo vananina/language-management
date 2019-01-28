@@ -7,4 +7,9 @@ body {
   line-height: 2;
   width: 100%;
   height: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.main-font-color {
+  color: #09204c;
 }

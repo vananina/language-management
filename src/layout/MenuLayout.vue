@@ -1,9 +1,9 @@
 <template>
-  <div class="menu-area">menu List
-    <ul>
-      <li v-for="menu in menuList" :key="menu.name">
+  <div class="menu-area">
+    <ul class="nav flex-column">
+      <li class="nav-item" v-for="menu in menuList" :key="menu.name">
         <!--<router-link :to="{name : menu.path, props: { menuName : menu.name }}">{{menu.name}}</router-link>-->
-        <a href="" @click="goToMenu(menu)">{{menu.name}}</a>
+        <a class="nav-link main-font-color" href="" @click="goToMenu(menu)">{{menu.name}}</a> <!--active-->
       </li>
     </ul>
   </div>
@@ -20,7 +20,12 @@
     },
     methods: {
       goToMenu : function (menu) {
-        this.$router.push({name : menu.name, path : menu.path, params: {menuName : menu.name}});
+        var params = {
+          menuName : menu.name,
+          menuId: menu.id
+        };
+        console.log('menu:', params);
+        this.$router.push({name : menu.name, path : menu.path, params: params});
       }
     }
   }
@@ -28,7 +33,11 @@
 
 <style scoped>
   .menu-area {
-    border: 1px solid;
+    width: 180px;
     height: 100%;
+    border-right: 1px solid;
+  }
+  .menu-area ul {
+    margin-top: 20px;
   }
 </style>
