@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="main-container">
     <top-layout></top-layout>
-    <div class="main-container">
+    <div class="content-container">
       <menu-layout></menu-layout>
       <router-view :key="$route.fullPath"></router-view>
     </div>
@@ -19,5 +19,11 @@
 </script>
 
 <style scoped>
-
+.main-container {
+  height: 100%;
+}
+.content-container {
+  display: flex;
+  height: 100%;
+}
 </style>
