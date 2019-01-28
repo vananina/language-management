@@ -96,7 +96,11 @@
     },
     firestore() {
       return {
-        langList: db.collection(this.dbTableInfo[this.serviceId]).orderBy('createdAt')
+        langList: db.collection(this.dbTableInfo[this.serviceId])
+          .orderBy('category')
+          .orderBy('division')
+          .orderBy('code')
+          .orderBy('createdAt')
       }
     },
     beforeMount(){
