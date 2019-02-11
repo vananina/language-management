@@ -12,7 +12,7 @@ module.exports = (env) => {
   let outputPath = path.resolve(__dirname, './dist')
 
   return {
-    mode: !env ? 'development' : env,
+    mode: !env ? 'dev' : env,
     entry: {
       index: clientPath + '/index.js'
     },
