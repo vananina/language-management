@@ -31,76 +31,40 @@
         </td>
       </tr>
     </table>
-  {{langList}}
+    <!-- {{langList}} -->
   </div>
 </template>
 
 <script>
 
-  // import data from "@/data/data";
   import {db} from '../utils/firebase';
 
   export default {
     name: "LanguageTable",
     props: {
-      serviceId: String // 문자열 데이터만 허용한다.
+      serviceId: String, // 문자열 데이터만 허용한다.
+      langList: Array
     },
     data() {
       return {
         dbTableInfo: {
           'service': 'imez-srv-lang',
           'partner': 'imez-ptn-lang'
-        },
-        langList: [],
-        initRowData: {
-          category: '',
-          division: '',
-          code: '',
-          korLang: '',
-          engLang: '',
-          jpLang: '',
-          cnLang: '',
-          
         }
       }
     },
     methods:{
-      addRow(data) {
-        const createdAt = new Date();
-        data = data || this.initRowData;
-        data.createdAt = createdAt;
-
-        console.log('[LangTable] addRow: data', data);
-        db.collection(this.dbTableInfo[this.serviceId]).add(data);
+      addRow () {
+        db.language.addRow(this.serviceId);
       },
       deleteRow (id) {
-        console.log('[LangTable] deleteRow: id', id);
-        var result = confirm('삭제하시겠습니까?');
-        if (result) {
-          console.log('deleted');
-          db.collection(this.dbTableInfo[this.serviceId]).doc(id).delete();
-        }
+        db.language.deleteRowById(this.serviceId, id);
       },
       updateRow (id, data) {
-        console.log('[LangTable] updateRow: id', id);
-        console.log('[LangTable] updateRow: data', data);
-        db.collection(this.dbTableInfo[this.serviceId]).doc(id).update(data)
-          .then((result) => {
-            alert('저장되었습니다.');
-          });
+        db.language.updateRowById(this.serviceId, id, data);
       },
       copyRow (data) {
-        console.log('[LangTable] copyRow: data', data);
-        this.addRow(data);
-      }
-    },
-    firestore() {
-      return {
-        langList: db.collection(this.dbTableInfo[this.serviceId])
-          .orderBy('category')
-          .orderBy('division')
-          .orderBy('code')
-          .orderBy('createdAt')
+        db.language.addRow(this.serviceId, data);
       }
     },
     beforeMount(){

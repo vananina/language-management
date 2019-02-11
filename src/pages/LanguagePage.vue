@@ -3,20 +3,23 @@
     <div class="content-header">
       <h3>{{serviceId}} web</h3>
       <div class="button-area"> 
-        <excel-export-button class="btn-util"></excel-export-button>
-        <excel-import-button class="btn-util"></excel-import-button>
-        <json-export-button class="btn-util"></json-export-button>
+        <excel-export-button class="btn-util" :serviceId="serviceId"></excel-export-button>
+        <excel-import-button class="btn-util" :serviceId="serviceId"></excel-import-button>
+        <json-export-button class="btn-util" :serviceId="serviceId"></json-export-button>
       </div>
     </div>
-    <language-table class="lang-table" :serviceId="serviceId"></language-table>
+    <language-table class="lang-table" :serviceId="serviceId" :langList="langList"></language-table>
   </div>
 </template>
 
 <script>
+
   import ExcelExportButton from '@/components/ExcelExportButton'
   import ExcelImportButton from '@/components/ExcelImportButton'
   import JsonExportButton from '@/components/JsonExportButton'
   import LanguageTable from '@/components/LangTable'
+
+  import {db} from '../utils/firebase';
 
   export default {
     name: "LanguagePage",
@@ -30,7 +33,12 @@
     },
     data() {
       return {
-        // serviceName: this.$route.query.serviceName
+        langList: []
+      }
+    },
+    firestore() {
+      return {
+        langList: db.language.getRows(this.serviceId)
       }
     },
     beforeMount(){
