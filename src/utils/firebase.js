@@ -128,6 +128,5 @@ export const db = {
           console.log('there is an error')
         })
     },
-
   }
 }
