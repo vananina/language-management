@@ -1,0 +1,49 @@
+[{
+  "category": "COMMON",
+  "cnLang": "cancel-cn",
+  "code": "CANCEL",
+  "createdAt": {
+    "seconds": 1549526906,
+    "nanoseconds": 56000000
+  },
+  "division": "BUTTON",
+  "engLang": "cancel",
+  "jpLang": "cancel-js",
+  "korLang": "취소",
+  "modifiedAt": {
+    "seconds": 1546786800,
+    "nanoseconds": 0
+  }
+}, {
+  "category": "COMMON",
+  "cnLang": "delete-cn",
+  "code": "DELETE",
+  "createdAt": {
+    "seconds": 1546786800,
+    "nanoseconds": 0
+  },
+  "division": "BUTTON",
+  "engLang": "delete",
+  "jpLang": "delete-js",
+  "korLang": "삭제",
+  "modifiedAt": {
+    "seconds": 1546786800,
+    "nanoseconds": 0
+  }
+}, {
+  "category": "COMMON",
+  "cnLang": "ok-cn",
+  "code": "OK",
+  "createdAt": {
+    "seconds": 1546786800,
+    "nanoseconds": 0
+  },
+  "division": "BUTTON",
+  "engLang": "ok",
+  "jpLang": "ok-js",
+  "korLang": "확인",
+  "modifiedAt": {
+    "seconds": 1546786800,
+    "nanoseconds": 0
+  }
+}]
