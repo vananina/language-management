@@ -1,7 +1,7 @@
 var Vue = require('vue')
 
 // var testComponent = require('../src/components/testComponent.vue')
-import TestComponent from '../src/components/TestComponent.vue'
+import TestComponent from '@/components/TestComponent.vue'
 
 describe('testComponent.vue', function () {
 
