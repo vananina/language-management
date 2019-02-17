@@ -16,7 +16,7 @@
   ].map(function(x) { return "." + x; }).join(",");
   
   export default {
-    name: "ImportExportButtons",
+    name: "ExcelImportButton",
     props : {
       serviceId: String,
       langList: Array

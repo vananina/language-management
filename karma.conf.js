@@ -1,6 +1,10 @@
 // Karma configuration
 // Generated on Mon Feb 11 2019 19:03:24 GMT+0900 (Korean Standard Time)
 
+var webpackConfigFile = require('./webpack.config.js')
+var webpackConfig = webpackConfigFile()
+delete webpackConfig.entry
+
 module.exports = function(config) {
   config.set({
 
@@ -8,28 +12,40 @@ module.exports = function(config) {
     basePath: '',
 
 
+    // start these browsers
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    browsers: ['Chrome'],
+
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+    // frameworks: ['jasmine-ajax', 'jasmine'],
     frameworks: ['jasmine-ajax', 'jasmine'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      './src/hello.js',
-      './test/hello.spec.js'
+      './test/index.js'
     ],
-
 
     // list of files / patterns to exclude
-    exclude: [
-    ],
-
+    exclude: [],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      './test/index.js': [ 'webpack']
     },
 
+    // webpack: webpackConfig,
+    // karma watches the test entry points
+      // (you don't need to specify the entry option)
+    webpack: webpackConfig,
+
+    webpackMiddleware: {
+      // webpack-dev-middleware configuration
+      // i. e.
+      noInfo: true
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -54,14 +70,9 @@ module.exports = function(config) {
     autoWatch: true,
 
 
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
-
-
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous

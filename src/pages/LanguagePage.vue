@@ -8,6 +8,7 @@
         <json-export-button class="btn-util" :serviceId="serviceId"></json-export-button>
       </div>
     </div>
+    <test-component></test-component>
     <language-table class="lang-table" :serviceId="serviceId" :langList="langList"></language-table>
   </div>
 </template>
@@ -17,6 +18,7 @@
   import ExcelExportButton from '@/components/ExcelExportButton'
   import ExcelImportButton from '@/components/ExcelImportButton'
   import JsonExportButton from '@/components/JsonExportButton'
+  import TestComponent from '@/components/TestComponent'
   import LanguageTable from '@/components/LangTable'
 
   import {db} from '../utils/firebase';
@@ -27,6 +29,7 @@
       ExcelExportButton, 
       ExcelImportButton, 
       JsonExportButton,
+      TestComponent,
       LanguageTable},
     props : {
       serviceId: String // 문자열 데이터만 허용한다.

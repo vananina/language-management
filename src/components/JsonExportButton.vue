@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: "ImportExportButtons"
+    name: "JsonExportButton"
   }
 </script>
 

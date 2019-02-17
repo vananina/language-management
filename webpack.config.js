@@ -12,7 +12,7 @@ module.exports = (env) => {
   let outputPath = path.resolve(__dirname, './dist')
 
   return {
-    mode: !env ? 'dev' : env,
+    mode: !env ? 'development' : env,
     entry: {
       index: clientPath + '/index.js'
     },
@@ -42,7 +42,8 @@ module.exports = (env) => {
         }, {
           test: /\.vue$/,
           loader: "vue-loader"
-        }]
+        }
+      ]
     },
     resolve: {
       alias: {
