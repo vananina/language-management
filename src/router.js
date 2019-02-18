@@ -1,21 +1,18 @@
-import MainLayout from '@/layout/MainLayout'
 import LanguagePage from '@/pages/LanguagePage'
 
 const routes = [
   {
     path: '/',
-    component: MainLayout,
+    name: 'home',
     redirect: '/languagePage/service',
-    children: [
-      {
-        path: '/languagePage/:serviceId',
-        name: 'languagePage',
-        component: LanguagePage,
-        props : true,
-        reload : false
-      }
-    ]
-  },{
+  },
+  {
+    path: '/languagePage/:menuId',
+    name: 'language-page',
+    props: true,
+    component: LanguagePage,
+  },
+  {
     path: '*',
     redirect: '/'
   }

@@ -1,15 +1,15 @@
 <template>
   <div class="content-area">
     <div class="content-header">
-      <h3>{{serviceId}} web</h3>
+      <h3>{{menuId}} web</h3>
       <div class="button-area"> 
-        <excel-export-button class="btn-util" :serviceId="serviceId"></excel-export-button>
-        <excel-import-button class="btn-util" :serviceId="serviceId"></excel-import-button>
-        <json-export-button class="btn-util" :serviceId="serviceId"></json-export-button>
+        <excel-export-button class="btn-util" :serviceId="menuId"></excel-export-button>
+        <excel-import-button class="btn-util" :serviceId="menuId"></excel-import-button>
+        <json-export-button class="btn-util" :serviceId="menuId"></json-export-button>
       </div>
     </div>
     <test-component></test-component>
-    <language-table class="lang-table" :serviceId="serviceId" :langList="langList"></language-table>
+    <language-table class="lang-table" :serviceId="menuId" :langList="langList"></language-table>
   </div>
 </template>
 
@@ -30,10 +30,13 @@
       ExcelImportButton, 
       JsonExportButton,
       TestComponent,
-      LanguageTable},
-    props : {
-      serviceId: String // 문자열 데이터만 허용한다.
+      LanguageTable
     },
+
+    props: [
+      'menuId'
+    ],
+
     data() {
       return {
         langList: []
@@ -41,11 +44,12 @@
     },
     firestore() {
       return {
-        langList: db.language.getRows(this.serviceId)
+        langList: db.language.getRows(this.menuId)
       }
     },
-    beforeMount(){
-      console.log('[LangPage] route:', this.$route);
+    created() {
+      console.log('props: ', this.menuId);
+      console.log('created : ', this.$route);
     }
   }
 </script>

@@ -1,10 +1,8 @@
 <template>
   <div class="menu-area">
     <ul class="nav flex-column">
-      <li class="nav-item" v-for="menu in menuList" :key="menu.name">
-        <!-- <router-link :to="{name : menu.path, props: { menuName : menu.name }}">{{menu.name}}</router-link> -->
-        <!-- <router-link :to="{name : menu.path, params: { menuName : menu.name }}">{{menu.name}}</router-link> -->
-        <a class="nav-link main-font-color" href="" @click="goToMenu(menu)">{{menu.name}}</a>
+      <li class="nav-item" v-for="menu in menuList" :key="menu.id">
+        <router-link class="nav-link main-font-color" :to="menu.path">{{menu.menuName}}</router-link>
       </li>
     </ul>
   </div>
@@ -17,15 +15,6 @@
     data() {
       return {
         menuList: data.menuList
-      }
-    },
-    methods: {
-      goToMenu : function (menu) {
-        var params = {
-          serviceId: menu.id
-        };
-        console.log('menu:', params);
-        this.$router.push({name : menu.name, path : menu.path, props: params});
       }
     }
   }

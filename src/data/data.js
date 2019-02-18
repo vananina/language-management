@@ -1,6 +1,6 @@
 export default {
   menuList: [
-    {path: 'service', name: 'IMEZ Service', id: 'service'},
-    {path: 'partner', name: 'IMEZ Partner', id: 'partner'}
+    {path: '/languagePage/service', name: 'language-page', id: 'service', menuName: 'IMEZ Service'},
+    {path: '/languagePage/partner', name: 'language-page', id: 'partner', menuName: 'IMEZ Partner'}
   ]
 };
