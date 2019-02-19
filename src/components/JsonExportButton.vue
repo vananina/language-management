@@ -4,7 +4,28 @@
 
 <script>
   export default {
-    name: "JsonExportButton"
+    name: "JsonExportButton",
+    methods: {
+      exportJsonFile() {
+        var jsonStr;
+        jsonStr = makeJsonData(list)
+        exportFile(jsonStr)
+      },
+      exportFile(jsonStr) {
+        // file down
+      },
+      makeJsonData(list) {
+        var resultObj;
+        var jsonStr;
+        resultObj = makeList2Obj(list);
+        jsonStr = JSON.stringify(resultObj)
+        return jsonStr
+      },
+      makeList2Obj(list) {
+        var resultObj;
+        return resultObj;
+      },
+    }
   }
 </script>
 
