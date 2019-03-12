@@ -53,6 +53,7 @@
         document.body.append(textArea);
         textArea.select();
         document.execCommand("copy");
+        textArea.remove();
 
         alert('복사되었습니다.');
       },
