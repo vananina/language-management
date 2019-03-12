@@ -57,7 +57,6 @@
       addRowsByExcel(data) {
         console.log('data', data);
 
-        // db.language.deleteAllRows(this.serviceId, this.langList);
         db.language.addRowsByExcel(this.serviceId, data);
       },
       onExcelImport() {
