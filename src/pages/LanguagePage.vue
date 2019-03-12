@@ -5,7 +5,7 @@
       <div class="button-area"> 
         <excel-export-button class="btn-util" :serviceId="menuId"></excel-export-button>
         <excel-import-button class="btn-util" :serviceId="menuId"></excel-import-button>
-        <json-export-button class="btn-util" :serviceId="menuId"></json-export-button>
+        <json-export-button class="btn-util" :serviceId="menuId" :langList="langList"></json-export-button>
       </div>
     </div>
     <test-component></test-component>
@@ -42,12 +42,10 @@
         langList: []
       }
     },
-    firestore() {
-      return {
-        langList: db.language.getRows(this.menuId)
-      }
-    },
     created() {
+      db.language.getRows(this.menuId, function (list) {
+        this.langList = list;
+      }.bind(this));
       console.log('props: ', this.menuId);
       console.log('created : ', this.$route);
     }
@@ -70,6 +68,7 @@
 }
 .btn-util {
   margin-right: 4px;
+  height: 38px;
 }
 .lang-table {
   margin-top: 40px;
