@@ -14,7 +14,7 @@
         <th>중국어</th>
         <th>수정</th>
       </tr>
-      <tr v-for="row in langList" :key="row.id">
+      <tr v-for="row in orderedList" :key="row.key">
         <td><input type="text" class="form-control" v-model="row.category"/></td>
         <td><input type="text" class="form-control" v-model="row.division"/></td>
         <td><input type="text" class="form-control" v-model="row.code"/></td>
@@ -24,20 +24,20 @@
         <td><input type="text" class="form-control" v-model="row.cnLang"/></td>
         <td>
           <div class="row-utils-area">
-            <button class="btn btn-secondary btn-util" @click="updateRow(row.id, row)">저장</button>
+            <button class="btn btn-secondary btn-util" @click="updateRow(row.key, row)">저장</button>
             <button class="btn btn-success btn-util" @click="copyRow(row)">복사</button>
-            <button class="btn btn-danger btn-util" @click="deleteRow(row.id)">삭제</button>
+            <button class="btn btn-danger btn-util" @click="deleteRow(row.key)">삭제</button>
           </div>
         </td>
       </tr>
     </table>
-    <!-- {{langList}} -->
   </div>
 </template>
 
 <script>
 
   import {db} from '../utils/firebase';
+  import _ from 'lodash'
 
   export default {
     name: "LanguageTable",
@@ -57,14 +57,19 @@
       addRow () {
         db.language.addRow(this.serviceId);
       },
-      deleteRow (id) {
-        db.language.deleteRowById(this.serviceId, id);
+      deleteRow (key) {
+        db.language.deleteRowById(this.serviceId, key);
       },
-      updateRow (id, data) {
-        db.language.updateRowById(this.serviceId, id, data);
+      updateRow (key, data) {
+        db.language.updateRowById(this.serviceId, key, data);
       },
       copyRow (data) {
-        db.language.addRow(this.serviceId, data);
+        db.language.copyRow(this.serviceId, data);
+      }
+    },
+    computed: {
+      orderedList: function () {
+        return _.orderBy(this.langList, 'order')
       }
     },
     beforeMount(){

@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueFire from 'vuefire'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+import firebase from 'firebase'
 
 // vuefire 연동
 Vue.use(VueFire)
@@ -19,7 +18,7 @@ var fbConfig = {
 let FBApp = firebase.initializeApp(fbConfig)
 export const fbApp = FBApp
 
-const database = FBApp.firestore()
+const database = fbApp.database()
 
 const dbTableInfo = {
   language: {
@@ -38,7 +37,7 @@ const initLangRowData = {
   cnLang: ''
 }
 
-function makeLangItem(data) {
+function makeLangItemFromExcel(data) {
   return {
     category: data[0],
     division: data[1],
@@ -47,60 +46,78 @@ function makeLangItem(data) {
     engLang: data[4],
     jpLang: data[5],
     cnLang: data[6],
-    createdAt: new Date()
+    createdAt: new Date(),
+    modifiedAt: new Date(),
+    order: data[0] + '-' + data[1] + '-' + data[2]
   }
+}
+
+function makeLangItemFromData(data) {
+  data.createdAt = data.createdAt || new Date();
+  data.modifiedAt = new Date();
+  data.order = data.category + '-' + data.division + '-' + data.code;
+  return data;
 }
 
 export const db = {
   language: {
-    getRows (serviceId) {
-      return database.collection(dbTableInfo.language[serviceId])
-        .orderBy('category')
-        .orderBy('division')
-        .orderBy('code')
-        .orderBy('createdAt')
+    getRows (serviceId, callback) {
+      var query = database.ref(dbTableInfo.language[serviceId]).orderByChild('id')
+      query.on('value', function (dataSnapshot) {
+        var list = [];
+        dataSnapshot.forEach(function(childSnapshot) {
+          var obj = {};
+          obj = childSnapshot.val();
+          obj.key = childSnapshot.key;
+          list.push(obj);
+        });
+        callback(list);
+      });
     },
     addRow (serviceId, data) {
+
+      var tableRef = database.ref(dbTableInfo.language[serviceId]);
       const createdAt = new Date();
       data = data || initLangRowData;
-      data.createdAt = createdAt;
-
+      data = makeLangItemFromData(data);
       console.log('[LangTable] addRow: data', data);
-      database.collection(dbTableInfo.language[serviceId]).add(data);
+
+      tableRef.push(data);
     },
-    deleteRowById (serviceId, id) {
-      // // Deleting collections from a Web client is not recommended.
-      console.log('[LangTable] deleteRow: id', id);
+    deleteRowById (serviceId, key) {
+      // // Deleting refs from a Web client is not recommended.
+      console.log('[LangTable] deleteRow: key', key);
+      
+      var tableRef = database.ref(dbTableInfo.language[serviceId]);
       var result = confirm('삭제하시겠습니까?');
+
       if (result) {
-        console.log('deleted');
-        database.collection(dbTableInfo.language[serviceId]).doc(id).delete();
-      }
-    },
-    deleteAllRows (serviceId, data) {
-      /// Batch Thing //
-      var tableRef = database.collection(dbTableInfo.language[serviceId]);
-      var batch = database.batch();
-
-      for (var i = 0; i < data.length; i++) {
-        if (i === 0) { continue; }
-        var id = makeLangItem(data[i]).id;
-        let itemRef = tableRef.doc(id)
-        batch.delete(itemRef);
-      }
-
-      return batch.commit()
-        .then(data => {
+        tableRef.child(key).remove(() => {
           alert('삭제되었습니다.');
-        })
-        .catch(error => {
-          console.log('there is an error')
-        })
+        });
+      }
     },
-    updateRowById (serviceId, id, data) {
-      console.log('[LangTable] updateRow: id', id);
+    copyRow (serviceId, data) {
+      var copyData
+      var emptyData = {
+        code: '',
+        korLang: '',
+        engLang: '',
+        jpLang: '',
+        cnLang: ''
+      }
+      copyData = Object.assign({}, data, emptyData);
+      this.addRow(serviceId, copyData);
+    },
+    updateRowById (serviceId, key, data) {
+      
+      console.log('[LangTable] updateRow: key', key);
       console.log('[LangTable] updateRow: data', data);
-      database.collection(dbTableInfo.language[serviceId]).doc(id).update(data)
+      
+      var tableRef = database.ref(dbTableInfo.language[serviceId]);
+
+      data = makeLangItemFromData(data);
+      tableRef.child(key).set(data)
         .then((result) => {
           alert('저장되었습니다.');
         });
@@ -108,25 +125,20 @@ export const db = {
     addRowsByExcel (serviceId, data) {
 
       /// Batch Thing //
-      var tableRef = database.collection(dbTableInfo.language[serviceId]);
-      var batch = database.batch();
+      var tableRef = database.ref(dbTableInfo.language[serviceId]);
 
-      for (var i = 0; i < data.length; i++) {
-        if (i === 0) { continue; }
-        var item = makeLangItem(data[i]);
-        let itemRef = tableRef.doc()
-        console.log('itemRef: ', itemRef);
-        batch.set(itemRef, item);
-      }
+      tableRef.remove(function() {
 
-      // live cycle 고려하기
-      return batch.commit()
-        .then(data => {
-          alert('저장되었습니다.');
-        })
-        .catch(error => {
-          console.log('there is an error')
-        })
+        for (var i = 0; i < data.length; i++) {
+          if (i === 0) { continue; }
+          var item = makeLangItemFromExcel(data[i]);
+          let itemRef = tableRef.push()
+          console.log('itemRef: ', itemRef);
+          itemRef.set(item);
+        }
+
+      });
+
     },
   }
 }
