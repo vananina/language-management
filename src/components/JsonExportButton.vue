@@ -3,7 +3,7 @@
     <button type="button" class="btn btn-primary" @click="onExcelImport()">json 생성</button>
     <div class="box-json" v-if="showJsonBox">
       <pre id="box-pre" class="box-pre">{{jsonStr}}</pre>
-      <button class="btn-copy-json btn btn-secondary" @click="copyJson()">복사</button>
+      <button class="btn-copy-json btn btn-success" @click="copyJson()">복사</button>
       <button class="btn-close-box-json btn btn-secondary" @click="closeJsonBox()">닫기</button>
     </div>
   </span>
