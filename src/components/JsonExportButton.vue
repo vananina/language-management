@@ -71,7 +71,7 @@
   position: fixed;
   right: 26px;
   top: 100px;
-  background: #f5f4f4;
+  background: #eff3fb;
   border: 1px solid #000;
   border-radius: 5px;
   padding: 20px 30px;
