@@ -33,6 +33,7 @@
         if(files && files[0]) {
           this._file(files[0]);
         }
+        evt.target.value = '';
       },
       _file(file) {
         /* Boilerplate to set up FileReader */
