@@ -3,12 +3,11 @@
     <div class="content-header">
       <h3>{{menuId}} web</h3>
       <div class="button-area"> 
-        <excel-export-button class="btn-util" :serviceId="menuId"></excel-export-button>
         <excel-import-button class="btn-util" :serviceId="menuId"></excel-import-button>
+        <excel-export-button class="btn-util" :serviceId="menuId" :langList="langList"></excel-export-button>
         <json-export-button class="btn-util" :serviceId="menuId" :langList="langList"></json-export-button>
       </div>
     </div>
-    <test-component></test-component>
     <language-table class="lang-table" :serviceId="menuId" :langList="langList"></language-table>
   </div>
 </template>
